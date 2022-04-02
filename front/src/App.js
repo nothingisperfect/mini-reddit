@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import Header from './components/Header';
+import Navbar from './components/Navbar';
 
 import { Route, Routes } from 'react-router-dom';
 
@@ -13,8 +13,7 @@ class App extends React.Component {
   render() {
     return (
       <div className='app'>
-        <Header brand='Mini Reddit app'></Header>
-
+        <Navbar />
         <main className='main'>
           <Routes>
             <Route exact path='/' element={<HomePage/>} />

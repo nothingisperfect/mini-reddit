@@ -17,13 +17,8 @@ class App extends React.Component {
         <main className='main'>
           <Routes>
             <Route exact path='/' element={<HomePage/>} />
-            {/* тут сыпет ошибками, потому что страницы пока пустые */}
-            {/* <Route path='/news/post' element={<NewPostPage/>} />
-            <Route exact path='/user' element={<UserPage/>} /> */}
-            {/*
-            Пока что просто убрал редирект, но лучше будет поставить там страницу, что мол такой нет
-            <Redirect to='/' />
-            */}
+            <Route path='/post' element={<NewPostPage/>} />
+            <Route exact path='/user' element={<UserPage/>} />
           </Routes>
         </main>
       </div>

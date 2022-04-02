@@ -15,7 +15,13 @@ var news = [
         image: img2,
         text: 'Вторая новость',
         author: 'Автор',
-    }
+    },
+    {
+        id: 'img-3',
+        title: 'post #3',
+        text: 'Третья новость с кучей текста',
+        author: 'Автор',
+    },
 ];
 
 export default news

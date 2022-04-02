@@ -7,12 +7,14 @@ var news = [
         title: 'post #1',
         image: img1,
         text: 'Первая новость',
+        author: 'Автор',
     },
     {
         id: 'img-2',
         title: 'post #2',
         image: img2,
         text: 'Вторая новость',
+        author: 'Автор',
     }
 ];
 

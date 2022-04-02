@@ -1,0 +1,30 @@
+.news-item {
+    box-sizing: border-box;
+    display: flex;
+    padding: 10px;
+    text-decoration: none;
+    color: inherit;
+    max-width: 600px;
+    flex-direction: column;
+    background-color: #282c34;
+    margin: 20px;
+    border-radius: 15px;
+}
+
+.news-item_image {
+    width: 95%;
+    align-self: center;
+}
+
+.news-item__header {
+    display: flex;
+    flex-direction: horizontal;
+    align-items: center;
+}
+
+.news-item__title {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    flex-grow: 1;
+}

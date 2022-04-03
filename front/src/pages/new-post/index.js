@@ -1,5 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"
 
+import "../../pages/user";
 import './new-post.css';
 
 class PostForm extends React.Component {

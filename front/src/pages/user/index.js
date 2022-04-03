@@ -52,6 +52,8 @@ class User extends React.Component {
             <button className='button' type='submit'>
                 Войти
             </button>
+
+            
         </form>
         );
     }

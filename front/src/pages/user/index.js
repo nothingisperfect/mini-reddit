@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactDOM from 'react-dom';
+import { AppState } from "../../AppState";
 
+import App from "../../App";
 import './user.css';
 
 class User extends React.Component {
@@ -25,37 +28,50 @@ class User extends React.Component {
                 nickname: '',
                 nicknameError: false,
             });
-            this.props.onSubmit();
-            return;
         }
         this.setState({
             nicknameError: !nickname,
         });
+        this.props.user.nickname = nickname;
+        ReactDOM.render(<App/>, document.getElementById('root'));
     };
+
+    logoutHandler = event => {
+        event.preventDefault();
+        this.props.user.nickname = null;
+        ReactDOM.render(<App/>, document.getElementById('root'));
+    }
 
     render() {
         const { nickname, nicknameError } = this.state;
         
-        return (
-        <form className='user-form' onSubmit={this.submitHandler}>
+        if(!this.props.user.nickname) {
+            return (
+            <form className='user-form' onSubmit={this.submitHandler}>
+                <div className='user-form__field'>
+                    <input 
+                        value={nickname}
+                        onChange={this.nickChangeHandler}
+                        placeholder='Введите имя пользователя'
+                    />
+                    {nicknameError ? (
+                        <div className='error'>Некорретное имя пользователя</div>
+                    ) : null}
+
+                        <button className='button' type='submit'>Войти</button>
+                 </div>
+            </form>
+        )} else {
+            return (
+            <form className='user-form' onSubmit={this.logoutHandler}>
             <div className='user-form__field'>
-                <input 
-                    value={nickname}
-                    onChange={this.nickChangeHandler}
-                    placeholder='Введите имя пользователя'
-                />
-                {nicknameError ? (
-                    <div className='error'>Некорретное имя пользователя</div>
-                ) : null}
-            </div>
-
-            <button className='button' type='submit'>
-                Войти
-            </button>
-
-            
-        </form>
-        );
+                
+                <p>{this.props.user.nickname}</p>
+                <button className='button' type='submit'>Выйти</button>
+                
+                </div>
+            </form>
+        )}
     }
 }
 

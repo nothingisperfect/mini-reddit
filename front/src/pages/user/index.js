@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ReactDOM from 'react-dom';
-import { AppState } from "../../AppState";
 
 import App from "../../App";
 import './user.css';

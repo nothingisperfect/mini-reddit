@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"
+import React, { useState } from "react";
+import { Navigate } from "react-router-dom"
 
 import "../../pages/user";
 import './new-post.css';
@@ -63,44 +63,47 @@ class PostForm extends React.Component {
 
     render() {
         const { title, titleError, text, textError, img, imgError} = this.state;
+        if(!this.props.user.nickname) { 
+            return (<Navigate to="/user" />)
+        }
 
-            return (
+        return (
             <form className='post-form' onSubmit={this.submitHandler}>
-                    <div className='post-form__field'>
-                        <input 
-                            value={title}
-                            onChange={this.titleChangeHandler}
-                            placeholder='Тема нового поста'
-                        />
-                        {titleError ? (
-                            <div className='error'>Впишите тему</div>
-                        ) : null}
-                    </div>
+                <div className='post-form__field'>
+                    <input 
+                        value={title}
+                        onChange={this.titleChangeHandler}
+                        placeholder='Тема нового поста'
+                    />
+                    {titleError ? (
+                        <div className='error'>Впишите тему</div>
+                    ) : null}
+                </div>
 
-                    <div className='post-form__field'>
-                        <textarea
-                            rows='10'
-                            value={text}
-                            onChange={this.textChangeHandler}
-                            placeholder='Текст вашего поста'
-                        ></textarea>
-                    </div>
+                <div className='post-form__field'>
+                    <textarea
+                        rows='10'
+                        value={text}
+                        onChange={this.textChangeHandler}
+                        placeholder='Текст вашего поста'
+                    ></textarea>
+                </div>
 
-                    <div className='post-form__field'>
-                        <input 
-                            value={img}
-                            onChange={this.imgChangeHandler}
-                            placeholder='Добавьте ссылку на картинку к посту'
-                        />
-                    </div>
-                    {textError && imgError ? (
-                            <div className='error'>Добавьте текст к посту 
-                            или ссылку на картинку</div>
-                        ) : null}
-                    
-                    <button className='button' type='submit'>
-                        Опубликовать
-                    </button>
+                <div className='post-form__field'>
+                    <input 
+                        value={img}
+                        onChange={this.imgChangeHandler}
+                        placeholder='Добавьте ссылку на картинку к посту'
+                    />
+                </div>
+                {textError && imgError ? (
+                        <div className='error'>Добавьте текст к посту 
+                        или ссылку на картинку</div>
+                    ) : null}
+                
+                <button className='button' type='submit'>
+                    Опубликовать
+                </button>
             </form>
         );
     }

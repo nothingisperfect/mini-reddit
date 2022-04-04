@@ -22,7 +22,7 @@ class App extends React.Component {
               <p>{AppState.nickname}</p>
               <Routes>
                 <Route exact path='/' element={<HomePage/>} />
-                <Route path='/post' element={<NewPostPage/>} />
+                <Route path='/post' element={<NewPostPage user={AppState}/>} />
                 <Route exact path='/user' element={<UserPage user={AppState}/>} />
               </Routes>
             </main>

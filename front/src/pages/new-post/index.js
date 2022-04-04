@@ -38,11 +38,17 @@ class PostForm extends React.Component {
         });
     }
 
-    submitHandler = event => {
+    submitHandler = async event => {
         event.preventDefault();
         const { title, text, img } = this.state;
 
         if(title && (text || img)) {
+            await fetch("http://localhost:3001/api/news", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: title, image: img, text: text, author: this.props.user.nickname })
+            }) 
+
             this.setState({
                 title: '',
                 titleError: false,
@@ -51,8 +57,6 @@ class PostForm extends React.Component {
                 img: '',
                 imgError: false,
             });
-            this.props.onSubmit();
-            return;
         }
         this.setState({
             titleError: !title,
@@ -69,6 +73,8 @@ class PostForm extends React.Component {
 
         return (
             <form className='post-form' onSubmit={this.submitHandler}>
+                <input type="hidden" name="nickname" value={this.props.user.nickname} />
+                
                 <div className='post-form__field'>
                     <input 
                         value={title}

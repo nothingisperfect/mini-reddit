@@ -7,6 +7,7 @@ const app = express();
 const cors = require('cors');
 
 app.use(cors())
+app.use(express.json())
 
 app.get('/api/news', async (request, response) => {
     try {
@@ -23,6 +24,20 @@ app.get('/api/news', async (request, response) => {
         await client.close()
     }
     
+})
+
+app.post('/api/news', async (request, response) => {
+    try {
+        await client.connect();
+
+        const database = client.db('perf-news')
+        const news = database.collection('news')
+
+        await news.insertOne(request.body)
+
+    } finally {
+        await client.close()
+    }
 })
 
 app.listen(3001, () => console.log('service is started'))
